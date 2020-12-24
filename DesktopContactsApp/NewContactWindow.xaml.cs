@@ -35,10 +35,7 @@ namespace DesktopContactsApp
                 string email = email_TextBox.Text.Trim();
                 string phone = phone_TextBox.Text.Trim();
                 Contact contact = new Contact(name, email, phone);
-                string DB_name = "contacts.db";
-                string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                string DB_path = System.IO.Path.Combine(dirPath, DB_name);
-                using (SQLiteConnection con = new SQLiteConnection(DB_path))
+                using (SQLiteConnection con = new SQLiteConnection(App.DB_path))
                 {
                     con.CreateTable<Contact>();
                     con.Insert(contact);
@@ -49,7 +46,7 @@ namespace DesktopContactsApp
 
         private bool Valid_in()
         {
-            return (!(string.IsNullOrEmpty(name_TextBox.Text.Trim()) || string.IsNullOrEmpty(email_TextBox.Text.Trim()) || string.IsNullOrEmpty(phone_TextBox.Text.Trim()))
+            return (!(string.IsNullOrEmpty(name_TextBox.Text.Trim()) || string.IsNullOrEmpty(email_TextBox.Text.Trim()) || string.IsNullOrEmpty(phone_TextBox.Text.Trim()) ));
         }
 
     }
