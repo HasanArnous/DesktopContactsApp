@@ -14,5 +14,12 @@ namespace DesktopContactsApp.Classes
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        public Contact(string _Name, string _Email, string _Phone)
+        {
+            Name = _Name;
+            Email = _Email;
+            Phone = _Phone;
+        }
     }
 }
