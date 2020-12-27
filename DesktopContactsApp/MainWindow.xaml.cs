@@ -36,10 +36,15 @@ namespace DesktopContactsApp
 
         void ReadDB()
         {
+            List<Contact> MyContacts;
             using (SQLite.SQLiteConnection con = new SQLite.SQLiteConnection(App.DB_path))
             {
                 con.CreateTable<Contact>();
-                var MyContacts = con.Table<Contact>().ToList();
+                MyContacts = con.Table<Contact>().ToList();
+            }
+            if(MyContacts != null)
+            {
+                contactsListView.ItemsSource = MyContacts;
             }
         }
 
