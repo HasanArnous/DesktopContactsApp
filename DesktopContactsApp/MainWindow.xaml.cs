@@ -43,8 +43,13 @@ namespace DesktopContactsApp
                 con.CreateTable<Contact>();
                 MyContacts = con.Table<Contact>().ToList();
                 MyContacts = MyContacts.OrderBy(c => c.Name).ToList();
+
+                // Or Using Linq: Language Integrated Query
+                List<Contact> MyContact2 = (from c2 in MyContacts
+                                            orderby c2.Name
+                                            select c2).ToList();
             }
-            if(MyContacts != null)
+            if (MyContacts != null)
             {
                 contactsListView.ItemsSource = MyContacts;
             }
@@ -54,6 +59,11 @@ namespace DesktopContactsApp
         {
             TextBox filterBox = sender as TextBox;
             List<Contact> filteredList = MyContacts.Where(c => c.Name.ToLower().Contains(filterBox.Text.ToLower())).ToList();
+
+            // Or Using Linq: Language Integrated Query
+
+            List<Contact> filteredList2 = (from c2 in MyContacts where c2.Name.ToLower().Contains(filterBox.Text.ToLower()) select c2).ToList();
+
             contactsListView.ItemsSource = filteredList;
         }
     }
