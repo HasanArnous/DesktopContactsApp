@@ -34,7 +34,12 @@ namespace DesktopContactsApp
                 string name = name_TextBox.Text.Trim();
                 string email = email_TextBox.Text.Trim();
                 string phone = phone_TextBox.Text.Trim();
-                Contact contact = new Contact(name, email, phone);
+                Contact contact = new Contact()
+                {
+                    Name=name,
+                    Email = email,
+                    Phone = phone
+                };
                 using (SQLiteConnection con = new SQLiteConnection(App.DB_path))
                 {
                     con.CreateTable<Contact>();
