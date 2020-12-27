@@ -41,7 +41,21 @@ namespace DesktopContactsApp
 
         private void Update_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            string name = name_TextBox.Text.Trim();
+            string email = email_TextBox.Text.Trim();
+            string phone = phone_TextBox.Text.Trim();
+            if(!(string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phone)))
+            {
+                contact.Name = name;
+                contact.Email = email;
+                contact.Phone = phone;
+                using (SQLiteConnection con = new SQLiteConnection(App.DB_path))
+                {
+                    con.CreateTable<Contact>();
+                    con.Update(contact);
+                }
+                Close();
+            }
         }
 
         private void Delete_btn_Click(object sender, RoutedEventArgs e)
