@@ -42,6 +42,7 @@ namespace DesktopContactsApp
             {
                 con.CreateTable<Contact>();
                 MyContacts = con.Table<Contact>().ToList();
+                MyContacts = MyContacts.OrderBy(c => c.Name).ToList();
             }
             if(MyContacts != null)
             {
